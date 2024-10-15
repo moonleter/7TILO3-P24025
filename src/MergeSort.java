@@ -1,60 +1,91 @@
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 public class MergeSort {
     private static int comparisons;
 
-    public static <T extends Comparable<T>> void mergeSort(T[] array, int left, int right) {
+    public static <T extends Comparable<T>> void mergeSort(T[] array) {
         comparisons = 0;
-        if (left < right) {
-            int middle = left + (right - left) / 2;
-
-            mergeSort(array, left, middle);
-            mergeSort(array, middle + 1, right);
-
-            merge(array, left, middle, right);
-        }
+        T[] aux = array.clone();
+        mergeSortHelper(array, aux, 0, array.length - 1);
     }
 
-    private static <T extends Comparable<T>> void merge(T[] array, int left, int middle, int right) {
-        int n1 = middle - left + 1;
-        int n2 = right - middle;
+    private static <T extends Comparable<T>> void mergeSortHelper(T[] array, T[] aux, int left, int right) {
+        if (left >= right) return;
+        int middleIndex = (left + right) / 2;
+        mergeSortHelper(array, aux, left, middleIndex);
+        mergeSortHelper(array, aux, middleIndex + 1, right);
+        merge(array, aux, left, right);
+    }
 
-        T[] leftArray = (T[]) new Comparable[n1];
-        T[] rightArray = (T[]) new Comparable[n2];
+    private static <T extends Comparable<T>> void merge(T[] array, T[] aux, int left, int right) {
+        int middleIndex = (left + right) / 2;
+        int leftIndex = left;
+        int rightIndex = middleIndex + 1;
+        int auxIndex = left;
 
-        for (int i = 0; i < n1; ++i) {
-            leftArray[i] = array[left + i];
+        for (int i = left; i <= right; i++) {
+            aux[i] = array[i];
         }
-        for (int j = 0; j < n2; ++j) {
-            rightArray[j] = array[middle + 1 + j];
-        }
 
-        int i = 0, j = 0;
-        int k = left;
-        while (i < n1 && j < n2) {
+        while (leftIndex <= middleIndex && rightIndex <= right) {
             comparisons++;
-            if (leftArray[i].compareTo(rightArray[j]) <= 0) {
-                array[k] = leftArray[i];
-                i++;
+            if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+                array[auxIndex++] = aux[leftIndex++];
             } else {
-                array[k] = rightArray[j];
-                j++;
+                array[auxIndex++] = aux[rightIndex++];
             }
-            k++;
         }
 
-        while (i < n1) {
-            array[k] = leftArray[i];
-            i++;
-            k++;
+        while (leftIndex <= middleIndex) {
+            array[auxIndex++] = aux[leftIndex++];
         }
 
-        while (j < n2) {
-            array[k] = rightArray[j];
-            j++;
-            k++;
+        while (rightIndex <= right) {
+            array[auxIndex++] = aux[rightIndex++];
         }
     }
 
     public static int getComparisons() {
         return comparisons;
+    }
+
+    public static void main(String[] args) {
+        try {
+            String[] names = FileReader.readStringsFromFile("src/data1.txt");
+            BigDecimal[] values = FileReader.readBigDecimalsFromFile("src/data2.txt");
+            Character[] characters = FileReader.readCharactersFromFile("src/data3.txt");
+
+            System.out.println("=== Data from data1.txt ===");
+            System.out.println("Before sorting names:");
+            System.out.println(Arrays.toString(names));
+
+            mergeSort(names);
+            System.out.println("After sorting names (MergeSort):");
+            System.out.println(Arrays.toString(names));
+            System.out.println("String comparisons (MergeSort): " + getComparisons());
+
+            System.out.println("\n=== Data from data2.txt ===");
+            System.out.println("Before sorting values:");
+            System.out.println(Arrays.toString(values));
+
+            mergeSort(values);
+            System.out.println("After sorting values (MergeSort):");
+            System.out.println(Arrays.toString(values));
+            System.out.println("Comparisons (MergeSort): " + getComparisons());
+
+            System.out.println("\n=== Data from data3.txt ===");
+            System.out.println("Before sorting characters:");
+            System.out.println(Arrays.toString(characters));
+
+            mergeSort(characters);
+            System.out.println("After sorting characters (MergeSort):");
+            System.out.println(Arrays.toString(characters));
+            System.out.println("Comparisons (MergeSort): " + getComparisons());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
