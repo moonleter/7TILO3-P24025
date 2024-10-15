@@ -2,6 +2,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+/**
+ * QuickSort implementation
+ */
 public class QuickSort {
     private static int comparisons;
 
@@ -10,25 +13,25 @@ public class QuickSort {
         quickSortHelper(array, 0, array.length - 1);
     }
 
-    private static <T extends Comparable<T>> void quickSortHelper(T[] array, int low, int high) {
-        if (low < high) {
-            int pi = partition(array, low, high);
-            quickSortHelper(array, low, pi - 1);
-            quickSortHelper(array, pi + 1, high);
+    private static <T extends Comparable<T>> void quickSortHelper(T[] array, int first, int last) {
+        if (first < last) {
+            int pi = partition(array, first, last);
+            quickSortHelper(array, first, pi - 1);
+            quickSortHelper(array, pi + 1, last);
         }
     }
 
-    private static <T extends Comparable<T>> int partition(T[] array, int low, int high) {
-        T pivot = array[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
+    private static <T extends Comparable<T>> int partition(T[] array, int first, int last) {
+        T pivot = array[last]; // Pivot is selected as the last element
+        int i = first - 1;
+        for (int j = first; j < last; j++) {
             comparisons++;
             if (array[j].compareTo(pivot) <= 0) {
                 i++;
                 swap(array, i, j);
             }
         }
-        swap(array, i + 1, high);
+        swap(array, i + 1, last);
         return i + 1;
     }
 
