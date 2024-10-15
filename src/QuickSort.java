@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * QuickSort implementation
+ * Selects pivot as the last element
  */
 public class QuickSort {
     private static int comparisons;
