@@ -34,35 +34,35 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         try {
-            String[] names = FileReader.readStringsFromFile("src/data1.txt");
-            BigDecimal[] values = FileReader.readBigDecimalsFromFile("src/data2.txt");
-            Character[] characters = FileReader.readCharactersFromFile("src/data3.txt");
+            MixedData[] data1 = FileReader.readMixedDataFromFile("src/data1.txt");
+            BigDecimal[] data2 = FileReader.readBigDecimalsFromFile("src/data2.txt");
+            Character[] data3 = FileReader.readCharactersFromFile("src/data3.txt");
 
             System.out.println("=== Data from data1.txt ===");
-            System.out.println("Before sorting names:");
-            System.out.println(Arrays.toString(names));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data1));
 
-            bubbleSort(names, Comparator.naturalOrder());
-            System.out.println("After sorting names (BubbleSort):");
-            System.out.println(Arrays.toString(names));
-            System.out.println("String comparisons (BubbleSort): " + getComparisons());
+            bubbleSort(data1, Comparator.naturalOrder());
+            System.out.println("After sorting (BubbleSort):");
+            System.out.println(Arrays.toString(data1));
+            System.out.println("Comparisons (BubbleSort): " + getComparisons());
 
             System.out.println("\n=== Data from data2.txt ===");
-            System.out.println("Before sorting values:");
-            System.out.println(Arrays.toString(values));
+            System.out.println("Before sorting");
+            System.out.println(Arrays.toString(data2));
 
-            bubbleSort(values, Comparator.naturalOrder());
-            System.out.println("After sorting values (BubbleSort):");
-            System.out.println(Arrays.toString(values));
+            bubbleSort(data2, Comparator.naturalOrder());
+            System.out.println("After sorting (BubbleSort):");
+            System.out.println(Arrays.toString(data2));
             System.out.println("Comparisons (BubbleSort): " + getComparisons());
 
             System.out.println("\n=== Data from data3.txt ===");
-            System.out.println("Before sorting characters:");
-            System.out.println(Arrays.toString(characters));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data3));
 
-            bubbleSort(characters, Comparator.naturalOrder());
-            System.out.println("After sorting characters (BubbleSort):");
-            System.out.println(Arrays.toString(characters));
+            bubbleSort(data3, Comparator.naturalOrder());
+            System.out.println("After sorting (BubbleSort):");
+            System.out.println(Arrays.toString(data3));
             System.out.println("Comparisons (BubbleSort): " + getComparisons());
 
         } catch (IOException e) {

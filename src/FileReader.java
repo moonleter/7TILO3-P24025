@@ -6,20 +6,6 @@ import java.util.List;
 
 public class FileReader {
 
-    public static String[] readStringsFromFile(String fileName) throws IOException {
-        BufferedReader reader = new BufferedReader(new java.io.FileReader(fileName));
-        List<String> list = new ArrayList<>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split("; ");
-            for (String part : parts) {
-                list.add(part);
-            }
-        }
-        reader.close();
-        return list.toArray(new String[0]);
-    }
-
     public static BigDecimal[] readBigDecimalsFromFile(String fileName) throws IOException {
         BufferedReader reader = new BufferedReader(new java.io.FileReader(fileName));
         List<BigDecimal> list = new ArrayList<>();
@@ -45,5 +31,23 @@ public class FileReader {
         }
         reader.close();
         return list.toArray(new Character[0]);
+    }
+
+    public static MixedData[] readMixedDataFromFile(String fileName) throws IOException {
+        BufferedReader reader = new BufferedReader(new java.io.FileReader(fileName));
+        List<MixedData> list = new ArrayList<>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("; ");
+            for (String part : parts) {
+                if (part.matches("\\d+")) {
+                    list.add(new MixedData(Integer.parseInt(part)));
+                } else {
+                    list.add(new MixedData(part));
+                }
+            }
+        }
+        reader.close();
+        return list.toArray(new MixedData[0]);
     }
 }

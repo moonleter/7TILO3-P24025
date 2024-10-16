@@ -53,35 +53,35 @@ public class MergeSort {
 
     public static void main(String[] args) {
         try {
-            String[] names = FileReader.readStringsFromFile("src/data1.txt");
-            BigDecimal[] values = FileReader.readBigDecimalsFromFile("src/data2.txt");
-            Character[] characters = FileReader.readCharactersFromFile("src/data3.txt");
+            MixedData[] data1 = FileReader.readMixedDataFromFile("src/data1.txt");
+            BigDecimal[] data2 = FileReader.readBigDecimalsFromFile("src/data2.txt");
+            Character[] data3 = FileReader.readCharactersFromFile("src/data3.txt");
 
             System.out.println("=== Data from data1.txt ===");
             System.out.println("Before sorting names:");
-            System.out.println(Arrays.toString(names));
+            System.out.println(Arrays.toString(data1));
 
-            mergeSort(names);
+            mergeSort(data1);
             System.out.println("After sorting names (MergeSort):");
-            System.out.println(Arrays.toString(names));
+            System.out.println(Arrays.toString(data1));
             System.out.println("String comparisons (MergeSort): " + getComparisons());
 
             System.out.println("\n=== Data from data2.txt ===");
-            System.out.println("Before sorting values:");
-            System.out.println(Arrays.toString(values));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data2));
 
-            mergeSort(values);
-            System.out.println("After sorting values (MergeSort):");
-            System.out.println(Arrays.toString(values));
+            mergeSort(data2);
+            System.out.println("After sorting (MergeSort):");
+            System.out.println(Arrays.toString(data2));
             System.out.println("Comparisons (MergeSort): " + getComparisons());
 
             System.out.println("\n=== Data from data3.txt ===");
-            System.out.println("Before sorting characters:");
-            System.out.println(Arrays.toString(characters));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data3));
 
-            mergeSort(characters);
-            System.out.println("After sorting characters (MergeSort):");
-            System.out.println(Arrays.toString(characters));
+            mergeSort(data3);
+            System.out.println("After sorting (MergeSort):");
+            System.out.println(Arrays.toString(data3));
             System.out.println("Comparisons (MergeSort): " + getComparisons());
 
         } catch (IOException e) {

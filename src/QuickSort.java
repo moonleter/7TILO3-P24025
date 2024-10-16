@@ -48,35 +48,35 @@ public class QuickSort {
 
     public static void main(String[] args) {
         try {
-            String[] names = FileReader.readStringsFromFile("src/data1.txt");
-            BigDecimal[] values = FileReader.readBigDecimalsFromFile("src/data2.txt");
-            Character[] characters = FileReader.readCharactersFromFile("src/data3.txt");
+            MixedData[] data1 = FileReader.readMixedDataFromFile("src/data1.txt");
+            BigDecimal[] data2 = FileReader.readBigDecimalsFromFile("src/data2.txt");
+            Character[] data3 = FileReader.readCharactersFromFile("src/data3.txt");
 
             System.out.println("=== Data from data1.txt ===");
-            System.out.println("Before sorting names:");
-            System.out.println(Arrays.toString(names));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data1));
 
-            quickSort(names);
-            System.out.println("After sorting names (QuickSort):");
-            System.out.println(Arrays.toString(names));
-            System.out.println("String comparisons (QuickSort): " + getComparisons());
+            quickSort(data1);
+            System.out.println("After sorting (QuickSort):");
+            System.out.println(Arrays.toString(data1));
+            System.out.println("Comparisons (QuickSort): " + getComparisons());
 
             System.out.println("\n=== Data from data2.txt ===");
-            System.out.println("Before sorting values:");
-            System.out.println(Arrays.toString(values));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data2));
 
-            quickSort(values);
-            System.out.println("After sorting values (QuickSort):");
-            System.out.println(Arrays.toString(values));
+            quickSort(data2);
+            System.out.println("After sorting (QuickSort):");
+            System.out.println(Arrays.toString(data2));
             System.out.println("Comparisons (QuickSort): " + getComparisons());
 
             System.out.println("\n=== Data from data3.txt ===");
-            System.out.println("Before sorting characters:");
-            System.out.println(Arrays.toString(characters));
+            System.out.println("Before sorting:");
+            System.out.println(Arrays.toString(data3));
 
-            quickSort(characters);
-            System.out.println("After sorting characters (QuickSort):");
-            System.out.println(Arrays.toString(characters));
+            quickSort(data3);
+            System.out.println("After sorting (QuickSort):");
+            System.out.println(Arrays.toString(data3));
             System.out.println("Comparisons (QuickSort): " + getComparisons());
 
         } catch (IOException e) {
